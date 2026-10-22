@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shuting Xu</title>
+<meta name="description" content="Shuting Xu · Applied scientist working on AI that lands in real operations.">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --ink: #1c1b19;
+    --muted: #6b675f;
+    --line: #e4dfd5;
+    --accent: #9a4a2c;
+    --serif: "Iowan Old Style", "Palatino Linotype", "Songti SC", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.7 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--line); }
+  a:hover, a:focus-visible { color: var(--accent); text-decoration-color: currentColor; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 248, 244, .92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .brand { font-family: var(--serif); font-size: 18px; text-decoration: none; }
+  nav { display: flex; gap: 20px; align-items: center; font-size: 14px; color: var(--muted); }
+  nav a { text-decoration: none; }
+  .lang {
+    font: inherit; font-size: 13px; color: var(--ink); cursor: pointer;
+    background: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px;
+  }
+  .lang:hover { border-color: var(--ink); }
+
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: 0; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.25; margin: 0; }
+  h1 { font-size: clamp(40px, 7vw, 60px); letter-spacing: -.01em; }
+  h2 { font-size: clamp(28px, 4.5vw, 36px); margin-bottom: 12px; }
+  h3 { font-size: 20px; }
+  .lede { font-size: 20px; color: var(--ink); margin: 24px 0 0; max-width: 34em; }
+  .sub { color: var(--muted); margin: 0 0 36px; }
+
+  /* Path */
+  ol.path { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line); }
+  ol.path li { position: relative; padding: 0 0 28px 28px; }
+  ol.path li::before {
+    content: ""; position: absolute; left: -5px; top: 9px;
+    width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1px solid var(--ink);
+  }
+  ol.path li:last-child { padding-bottom: 0; }
+  ol.path li:last-child::before { background: var(--accent); border-color: var(--accent); }
+  .org { font-weight: 600; }
+  .yr { display: block; font-family: var(--serif); font-size: 14px; color: var(--muted); }
+  .role { color: var(--muted); }
+
+  /* Focus */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+  .grid p { color: var(--muted); margin: 8px 0 0; font-size: 15.5px; }
+
+  /* Calls */
+  .call { display: grid; grid-template-columns: 88px 1fr; gap: 20px; padding: 28px 0; border-top: 1px solid var(--line); }
+  .call:first-of-type { border-top: 0; padding-top: 8px; }
+  .date { font-family: var(--serif); color: var(--accent); font-size: 15px; padding-top: 3px; }
+  .call p { margin: 8px 0 0; color: var(--muted); font-size: 15.5px; }
+
+  /* Principles */
+  ul.principles { list-style: none; margin: 0; padding: 0; }
+  ul.principles li { font-family: var(--serif); font-size: 21px; padding: 16px 0; border-top: 1px solid var(--line); }
+  ul.principles li:first-child { border-top: 0; }
+
+  .contact a { display: inline-block; margin-right: 24px; }
+  footer { color: var(--muted); font-size: 13px; padding: 40px 0 56px; }
+
+  /* Language toggle: elements carry data-zh / data-en; JS swaps them. */
+  @media (max-width: 560px) {
+    nav .navlink { display: none; }
+    .call { grid-template-columns: 1fr; gap: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Shuting Xu</a>
+    <nav aria-label="Primary">
+      <a class="navlink" href="#path" data-zh="经历" data-en="Path">经历</a>
+      <a class="navlink" href="#calls" data-zh="判断" data-en="Calls">判断</a>
+      <a class="navlink" href="#contact" data-zh="联系" data-en="Contact">联系</a>
+      <button class="lang" id="lang" type="button" aria-label="Switch language">EN</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Shuting Xu · Data Science @ Amazon</p>
+      <h1 data-zh="让 AI 真的落地。" data-en="AI that actually lands.">让 AI 真的落地。</h1>
+      <p class="lede"
+         data-zh="我在 Amazon 带数据科学团队，做 AI agent 在真实业务流程里的落地：从定义问题、设计评估，到让系统在规模上稳定运转。能 demo 不代表能落地，能落地也不代表能 scale，我的工作大多发生在这两道坎之间。"
+         data-en="I lead a data science team at Amazon, landing AI agents inside real operational workflows: defining the problem, designing the evaluation, and keeping the system reliable at scale. A demo isn't a deployment, and a deployment isn't scale. Most of my work happens between those two gaps.">
+        我在 Amazon 带数据科学团队，做 AI agent 在真实业务流程里的落地：从定义问题、设计评估，到让系统在规模上稳定运转。能 demo 不代表能落地，能落地也不代表能 scale，我的工作大多发生在这两道坎之间。
+      </p>
+    </div>
+  </section>
+
+  <!-- Path -->
+  <section id="path">
+    <div class="wrap">
+      <h2 data-zh="经历" data-en="Path">经历</h2>
+      <p class="sub" data-zh="从分析到科学，再到 AI，每一步都更靠近真实的决策和结果。" data-en="From analytics to science to AI, each step closer to real decisions and outcomes.">从分析到科学，再到 AI，每一步都更靠近真实的决策和结果。</p>
+      <ol class="path">
+        <!-- Source: LinkedIn profile export, 2026-10-22 -->
+        <li><span class="yr">2007–2011</span><span class="org" data-zh="上海交通大学" data-en="Shanghai Jiao Tong University">上海交通大学</span> · <span class="role" data-zh="电子与计算机工程，学士" data-en="BS, Electrical and Computer Engineering">电子与计算机工程，学士</span></li>
+        <li><span class="yr">2011–2012</span><span class="org">Georgia Tech</span> · <span class="role" data-zh="工业工程，硕士" data-en="MS, Industrial Engineering">工业工程，硕士</span></li>
+        <li><span class="yr">2013–2015</span><span class="org">The Rainmaker Group</span> · <span class="role" data-zh="定价分析师，统计建模与预测" data-en="Pricing Analyst, statistical and predictive modeling">定价分析师，统计建模与预测</span></li>
+        <li><span class="yr">2015–2019</span><span class="org">Amazon</span> · <span class="role" data-zh="商业智能工程师（BIE）" data-en="Business Intelligence Engineer">商业智能工程师（BIE）</span></li>
+        <li><span class="yr">2019–2021</span><span class="org">Amazon</span> · <span class="role" data-zh="数据科学家，衡量 Sponsored Brands 广告的整体价值" data-en="Data Scientist, measuring the holistic value of Sponsored Brands ads">数据科学家，衡量 Sponsored Brands 广告的整体价值</span></li>
+        <li><span class="yr" data-zh="2021–至今" data-en="2021–now">2021–至今</span><span class="org">Amazon</span> · <span class="role" data-zh="数据科学经理，带领科学团队，AI agent 与评估体系" data-en="Data Science Manager, leading a science team on AI agents and evaluation">数据科学经理，带领科学团队，AI agent 与评估体系</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Focus -->
+  <section id="focus">
+    <div class="wrap">
+      <h2 data-zh="我在做什么" data-en="What I work on">我在做什么</h2>
+      <p class="sub" data-zh="三个反复出现的问题。" data-en="Three questions I keep coming back to.">三个反复出现的问题。</p>
+      <div class="grid">
+        <div>
+          <h3 data-zh="什么时候该信模型" data-en="When to trust the model">什么时候该信模型</h3>
+          <p data-zh="置信度、选择性分类、Agent-as-a-Judge：让系统知道自己什么时候不该自动决策。" data-en="Confidence, selective classification, Agent-as-a-Judge: systems that know when not to decide on their own.">置信度、选择性分类、Agent-as-a-Judge：让系统知道自己什么时候不该自动决策。</p>
+        </div>
+        <div>
+          <h3 data-zh="怎么拆一个 AI 系统" data-en="How to decompose an AI system">怎么拆一个 AI 系统</h3>
+          <p data-zh="agent、skill、tool 的边界，决定了系统能不能被看懂、被维护。" data-en="Where agents, skills, and tools split decides whether a system can be understood and maintained.">agent、skill、tool 的边界，决定了系统能不能被看懂、被维护。</p>
+        </div>
+        <div>
+          <h3 data-zh="领域知识是底座" data-en="Domain knowledge as foundation">领域知识是底座</h3>
+          <p data-zh="在专业场景里，领域知识不是加分项。科学家的价值在于把它变成系统能用的结构。" data-en="In specialist settings, domain knowledge isn't a bonus. A scientist's job is turning it into structure a system can use.">在专业场景里，领域知识不是加分项。科学家的价值在于把它变成系统能用的结构。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Public calls -->
+  <section id="calls">
+    <div class="wrap">
+      <h2 data-zh="公开判断" data-en="Public calls">公开判断</h2>
+      <p class="sub" data-zh="写下来，让时间检验。对也好错也好，都留在原处。" data-en="Write the call down. Let time check it. Right or wrong, each one stays where I made it.">写下来，让时间检验。对也好错也好，都留在原处。</p>
+
+      <article class="call">
+        <div class="date">2026.05</div>
+        <div>
+          <h3 data-zh="置信度应该审计推理，而不是重做任务" data-en="Confidence should audit the reasoning, not redo the task">置信度应该审计推理，而不是重做任务</h3>
+          <p data-zh="让另一个模型再答一遍，只能测一致性。更有用的信号是：一个独立的审查者判断解题者的推理是否真的支撑它的答案。" data-en="Asking a second model to answer again only measures agreement. The more useful signal is an independent auditor judging whether the solver's reasoning actually supports its answer.">让另一个模型再答一遍，只能测一致性。更有用的信号是：一个独立的审查者判断解题者的推理是否真的支撑它的答案。</p>
+        </div>
+      </article>
+
+      <article class="call">
+        <div class="date">2026.05</div>
+        <div>
+          <h3 data-zh="多数「多 agent」系统，其实应该是一个 agent 加几个 skill" data-en="Most “multi-agent” systems should be one agent with a few skills">多数「多 agent」系统，其实应该是一个 agent 加几个 skill</h3>
+          <p data-zh="判断标准很简单：真的需要几个独立的推理循环？多一个循环就多一份协调和维护成本，这笔账要先算清楚。" data-en="The test is simple: how many independent reasoning loops do you actually need? Each extra loop adds coordination and maintenance cost. Do that math first.">判断标准很简单：真的需要几个独立的推理循环？多一个循环就多一份协调和维护成本，这笔账要先算清楚。</p>
+        </div>
+      </article>
+
+      <article class="call">
+        <div class="date">2026.06</div>
+        <div>
+          <h3 data-zh="用人工标注当真值，模型的上限就是人" data-en="If human labels are ground truth, the human is the ceiling">用人工标注当真值，模型的上限就是人</h3>
+          <p data-zh="「准确率」其实是「和标注员一致的比例」。当模型可能比标注员更对时，这个指标会把进步记成错误。" data-en="“Accuracy” really means “agreement with the labeler.” Once the model may be more right than the labeler, the metric starts scoring progress as error.">「准确率」其实是「和标注员一致的比例」。当模型可能比标注员更对时，这个指标会把进步记成错误。</p>
+        </div>
+      </article>
+
+      <article class="call">
+        <div class="date">2026.08</div>
+        <div>
+          <h3 data-zh="在专业分类任务里，LLM 是重排器，不是检索器" data-en="In specialist classification, the LLM is a re-ranker, not a retriever">在专业分类任务里，LLM 是重排器，不是检索器</h3>
+          <p data-zh="让 LLM 在候选集里做判断，比让它从零生成答案更稳。召回交给专门的模型，推理交给 LLM。" data-en="Letting the LLM judge within a candidate set is far steadier than asking it to generate from scratch. Leave recall to a dedicated model; give the LLM the reasoning.">让 LLM 在候选集里做判断，比让它从零生成答案更稳。召回交给专门的模型，推理交给 LLM。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section id="principles">
+    <div class="wrap">
+      <h2 data-zh="我相信的几件事" data-en="A few things I hold">我相信的几件事</h2>
+      <ul class="principles">
+        <li data-zh="不要为了推进而推进，先定义真正的问题。" data-en="Don't push for the sake of pushing. Define the real problem first.">不要为了推进而推进，先定义真正的问题。</li>
+        <li data-zh="判断一件事，不只看能不能做，也看值不值得、谁来长期维护。" data-en="Not just can we do it, but is it worth it, and who maintains it long-term.">判断一件事，不只看能不能做，也看值不值得、谁来长期维护。</li>
+        <li data-zh="好的领导，不是自己扛更多，而是让别人更容易把事做对。" data-en="Good leadership isn't carrying more yourself. It's making it easier for others to do things right.">好的领导，不是自己扛更多，而是让别人更容易把事做对。</li>
+        <li data-zh="我不想活成一个更标准的人，我想活成一个更完整的人。" data-en="I don't want to become a more standard person. I want to become a more complete one.">我不想活成一个更标准的人，我想活成一个更完整的人。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap contact">
+      <h2 data-zh="联系" data-en="Contact">联系</h2>
+      <p class="sub" data-zh="聊 AI 落地、评估，或者科学家怎么成长，都欢迎。" data-en="Happy to talk about landing AI, evaluation, or how scientists grow.">聊 AI 落地、评估，或者科学家怎么成长，都欢迎。</p>
+      <a href="https://www.linkedin.com/in/shuting-xu-26201126" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" data-zh="© 2026 Shuting Xu · 观点仅代表个人。" data-en="© 2026 Shuting Xu · Views are my own.">© 2026 Shuting Xu · 观点仅代表个人。</div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('lang');
+    var nodes = document.querySelectorAll('[data-zh][data-en]');
+    function apply(lang) {
+      nodes.forEach(function (el) { el.textContent = el.getAttribute('data-' + lang); });
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      btn.textContent = lang === 'zh' ? 'EN' : '中文';
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var initial = saved || (/^zh/i.test(navigator.language) ? 'zh' : 'en');
+    apply(initial);
+    btn.addEventListener('click', function () {
+      apply(document.documentElement.lang === 'en' ? 'zh' : 'en');
+    });
+  })();
+</script>
+</body>
+</html>
